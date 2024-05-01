@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://bjcktv8ukpg7m"]
+
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_jj3ki"]
+[ext_resource type="Texture2D" uid="uid://c2jgdntd7ml1v" path="res://assets/sprites/slime_green.png" id="1_rqr2x"]
+[ext_resource type="PackedScene" uid="uid://cowlkxboep1qa" path="res://scenes/killzone.tscn" id="2_8lqb3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yk4u"]
+atlas = ExtResource("1_rqr2x")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx8cx"]
+atlas = ExtResource("1_rqr2x")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwfhl"]
+atlas = ExtResource("1_rqr2x")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbeaj"]
+atlas = ExtResource("1_rqr2x")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkagy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yk4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx8cx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwfhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbeaj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_324xn"]
+size = Vector2(10, 14)
+
+[node name="enemy" type="Node2D"]
+script = ExtResource("1_jj3ki")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_jkagy")
+autoplay = "default"
+frame = 2
+
+[node name="killzone" parent="." instance=ExtResource("2_8lqb3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+shape = SubResource("RectangleShape2D_324xn")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(10, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-9, 0)
+
+[connection signal="body_entered" from="killzone" to="killzone" method="_on_body_entered"]
