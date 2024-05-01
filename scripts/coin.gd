@@ -1,6 +1,7 @@
 extends Area2D
 
+@onready var manager = %GameManager
 
 func _on_body_entered(body):
-	print('cha-ching')
+	manager.increment()
 	queue_free()
