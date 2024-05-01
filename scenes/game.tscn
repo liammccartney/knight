@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2vxud7qdfqs3"]
+[gd_scene load_steps=14 format=3 uid="uid://d2vxud7qdfqs3"]
 
 [ext_resource type="PackedScene" uid="uid://c5fftpu0symwu" path="res://scenes/player.tscn" id="1_vsvsb"]
 [ext_resource type="Texture2D" uid="uid://bykdsjieg1spy" path="res://assets/sprites/world_tileset.png" id="2_7rxs8"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bmclwdky8ydm3" path="res://scenes/coin.tscn" id="4_k4jy7"]
 [ext_resource type="PackedScene" uid="uid://cowlkxboep1qa" path="res://scenes/killzone.tscn" id="5_qulbu"]
 [ext_resource type="PackedScene" uid="uid://bjcktv8ukpg7m" path="res://scenes/enemy.tscn" id="6_vnmam"]
+[ext_resource type="FontFile" uid="uid://et4r1xjpm26j" path="res://assets/fonts/PixelOperator8.ttf" id="7_vijil"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2emmv"]
 texture = ExtResource("2_7rxs8")
@@ -456,7 +457,7 @@ _data = {
 position = Vector2(-1, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_vsvsb")]
-position = Vector2(504, -6)
+position = Vector2(14, 24)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(44, 7)
@@ -519,5 +520,14 @@ autoplay = "move"
 
 [node name="enemy" parent="." instance=ExtResource("6_vnmam")]
 position = Vector2(584, 24)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -74.0
+offset_top = -32.0
+offset_right = 41.0
+offset_bottom = -20.0
+theme_override_fonts/font = ExtResource("7_vijil")
+theme_override_font_sizes/font_size = 8
+text = "Space or x to Jump"
 
 [connection signal="body_entered" from="killzone" to="killzone" method="_on_body_entered"]
