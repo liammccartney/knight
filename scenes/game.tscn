@@ -473,7 +473,7 @@ theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("1_vsvsb")]
-position = Vector2(14, 24)
+position = Vector2(14, -233)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(44, 7)
