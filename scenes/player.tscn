@@ -176,7 +176,7 @@ z_index = 5
 collision_layer = 2
 script = ExtResource("1_dicxq")
 jump_time_up = 0.3
-jump_time_down = 0.25
+jump_time_down = 0.22
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)

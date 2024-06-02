@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 const SPEED = 150.0
 
+var can_double_jump = true
+
 @onready var sprite = $AnimatedSprite2D
 
 @export_group("Jump")
@@ -46,7 +48,10 @@ func _physics_process(delta):
 	
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		jump()
-
+		
+	if not is_on_floor() and Input.is_action_just_pressed("jump") and can_double_jump:
+		can_double_jump = false
+		jump()
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
@@ -57,6 +62,7 @@ func _physics_process(delta):
 		sprite.flip_h = true
 	
 	if is_on_floor():
+		can_double_jump = true
 		if direction == 0:
 			sprite.play("idle")
 		else:
